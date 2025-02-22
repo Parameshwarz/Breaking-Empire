@@ -11,7 +11,11 @@ import {
   LogOut
 } from "lucide-react";
 
-export default function DashboardPage() {
+interface DashboardPageProps {
+  view?: string;
+}
+
+export default function DashboardPage({ view = "dashboard" }: DashboardPageProps) {
   return (
     <div className="min-h-screen flex">
       {/* Sidebar */}
@@ -29,7 +33,7 @@ export default function DashboardPage() {
           <motion.div className="space-y-2">
             {[
               { icon: LayoutDashboard, label: "Overview", href: "/dashboard" },
-              { icon: Factory, label: "Production", href: "/production" },
+              { icon: Factory, label: "Operations", href: "/operations" },
               { icon: Skull, label: "Territory", href: "/territory" },
               { icon: BarChart3, label: "Analytics", href: "/analytics" },
               { icon: Shield, label: "Security", href: "/security" },
@@ -38,7 +42,7 @@ export default function DashboardPage() {
                 <motion.a
                   whileHover={{ x: 5 }}
                   className={`flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-[#28A745] hover:bg-[#28A745]/10 transition-colors ${
-                    item.href === "/dashboard" ? "bg-[#28A745]/10 text-[#28A745]" : ""
+                    item.href === `/${view}` ? "bg-[#28A745]/10 text-[#28A745]" : ""
                   }`}
                 >
                   <item.icon className="w-5 h-5" />
@@ -63,7 +67,7 @@ export default function DashboardPage() {
       {/* Main Content */}
       <div className="flex-1 relative">
         <BackgroundScene />
-        <Dashboard />
+        <Dashboard view={view} />
       </div>
     </div>
   );

@@ -11,6 +11,9 @@ function Router() {
     <Switch>
       <Route path="/" component={LandingPage} />
       <Route path="/dashboard" component={DashboardPage} />
+      <Route path="/analytics" component={() => <DashboardPage view="analytics" />} />
+      <Route path="/operations" component={() => <DashboardPage view="operations" />} />
+      <Route path="/leaderboard" component={() => <DashboardPage view="leaderboard" />} />
       <Route component={NotFound} />
     </Switch>
   );

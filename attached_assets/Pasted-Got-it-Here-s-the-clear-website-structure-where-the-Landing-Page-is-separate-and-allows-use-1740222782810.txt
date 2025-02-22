@@ -1,0 +1,90 @@
+Got it! Here’s the **clear website structure** where the **Landing Page** is separate and allows users to access the **Dashboard, Revenue & Risk Analytics, and Operations Management Panel** through navigation.  
+
+---
+
+# **🌐 Website Structure for "The Criminal Empire"**  
+
+## **1️⃣ Landing Page (Home)**
+📌 **Purpose:** The main entry point that introduces users to the empire-building concept and lets them access different sections.  
+
+### **Content:**  
+✅ **Dark, cinematic Breaking Bad-inspired UI**  
+✅ **Hero Section:**  
+   - **Title:** “Build Your Criminal Empire”  
+   - **Tagline:** “From street-level to kingpin—manage your business wisely.”  
+   - **Start Empire** **🔘 (CTA Button)** → Opens the **Dashboard**  
+✅ **Navigation Bar (Accessible from every page)**:  
+   - Home 🏠 (This page)  
+   - Dashboard 📊  
+   - Revenue & Risk Analytics 📈  
+   - Operations Management ⚙️  
+✅ **Background:** Subtle animations (cash piles stacking, chemical smoke, neon lights flickering)  
+✅ **Footer:** Small Breaking Bad-themed Easter eggs (e.g., “Respect the Chemistry” text)  
+
+---
+
+## **2️⃣ Empire Dashboard (Main Hub)**
+📌 **Purpose:** The control center where users see all key business metrics.  
+
+### **Content:**  
+✅ **Total Revenue Counter** 💰 (Live number)  
+✅ **Meth Production Rate** ⚗️ (Gauge meter showing batches per day)  
+✅ **Distribution Efficiency** 📦 (Pie chart or bar graph)  
+✅ **Law Enforcement Risk Meter** 🚨 (Color-coded "Wanted Level")  
+✅ **Live Alerts:** (e.g., “DEA Suspicion Rising!” warning)  
+✅ **Side Panel:** Quick actions like upgrading production, hiring distributors  
+✅ **Navigation Bar:** Lets users switch between other sections  
+
+---
+
+## **3️⃣ Revenue & Risk Analytics Page**
+📌 **Purpose:** Provides financial insights and risk management data.  
+
+### **Content:**  
+✅ **Revenue Growth Graph** 📈 (Line chart showing profits over time)  
+✅ **Risk Heatmap** 🚔 (Shows high-alert areas for law enforcement activity)  
+✅ **Recent Transactions Log** (Sales income, expenses, bribes)  
+✅ **Purity Score Graph** ⚗️ (Higher purity = More money but more DEA attention)  
+✅ **Warning Popups**:  
+   - “Law Enforcement Suspicion Increased!”  
+   - “A rival cartel is watching your moves.”  
+
+---
+
+## **4️⃣ Operations Management Panel**
+📌 **Purpose:** Allows users to control production locations and upgrades.  
+
+### **Content:**  
+✅ **Production Locations List:**  
+   - **🏚 RV Lab** (Cheap, High Risk)  
+   - **🏢 Superlab** (Expensive, Low Risk)  
+   - **🏬 Warehouse** (Balanced)  
+✅ **Stats for Each Location:**  
+   - Cost to operate  
+   - Production efficiency  
+   - Risk level  
+✅ **Upgrade Options:**  
+   - Buy better lab equipment  
+   - Bribe DEA to reduce risk  
+   - Expand distribution network  
+
+---
+
+## **5️⃣ Leaderboards & Achievements (Optional)**
+📌 **Purpose:** Adds a progression system for motivation.  
+
+### **Content:**  
+✅ **Empire Rank System** (Jesse → Gus Fring → Heisenberg)  
+✅ **Achievements List** 🏆 (Milestones like “First $1M” or “DEA Dodge Master”)  
+✅ **Leaderboard Rankings** (Global empire standings)  
+
+---
+
+# **🔹 Navigation Flow:**  
+**Landing Page** 🏠 → Dashboard 📊 → Analytics 📈 → Operations ⚙️  
+
+- **Landing Page is separate from the Dashboard.**  
+- **Users can access Dashboard, Analytics, and Operations from the Navbar.**  
+- **The website feels immersive, professional, and interactive.**  
+
+Let me know if you need further refinements! 🚀
