@@ -357,12 +357,46 @@ const LandingPage: React.FC = () => {
 
   return (
     <div ref={containerRef} className="relative min-h-screen bg-black overflow-hidden">
-      {/* Animated Background */}
       <AnimatedBackground />
+
+      {/* Easter Egg Message Overlay - Moved to top level for better z-index */}
+      <AnimatePresence>
+        {showSecretMessage && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+            className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[100]"
+          >
+            <div className="bg-blue-900/90 text-white px-6 py-3 rounded-lg border border-blue-500">
+              <p className="text-xl font-bold">{secretMessages[easterEggCount % secretMessages.length]}</p>
+              {easterEggCount === 99 && (
+                <p className="text-sm text-blue-300 mt-2">99.1% Pure</p>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Hidden Crystal Button - Increased z-index */}
+      <button
+        onClick={handleCrystalClick}
+        className="fixed bottom-4 right-4 opacity-10 hover:opacity-100 transition-opacity z-[90]"
+        title={`Purity: ${easterEggCount}%`}
+      >
+        💎
+      </button>
+
+      {/* Birthday Easter Egg - Increased z-index */}
+      {isHeisenbergsBirthday() && (
+        <div className="fixed top-4 right-4 animate-pulse z-[90]">
+          <span className="text-green-500 text-sm">Happy Birthday, Heisenberg! 🎂</span>
+        </div>
+      )}
 
       {/* Mouse trail effect */}
       <motion.div
-        className="fixed w-8 h-8 pointer-events-none mix-blend-screen"
+        className="fixed w-8 h-8 pointer-events-none mix-blend-screen z-[80]"
         style={{
           x: cursorX,
           y: cursorY,
@@ -703,8 +737,8 @@ const LandingPage: React.FC = () => {
           </div>
         </section>
 
-        {/* Enhanced System Status Footer */}
-        <div className="fixed bottom-0 left-0 right-0 p-4 bg-black/90 backdrop-blur-sm border-t border-green-500/20">
+        {/* Enhanced System Status Footer - Updated z-index */}
+        <div className="fixed bottom-0 left-0 right-0 p-4 bg-black/90 backdrop-blur-sm border-t border-green-500/20 z-[70]">
           <div className="container mx-auto flex justify-between items-center">
             <div className="flex items-center space-x-4">
               <span 
@@ -733,41 +767,6 @@ const LandingPage: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Easter Egg Message Overlay */}
-      <AnimatePresence>
-        {showSecretMessage && (
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -50 }}
-            className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50"
-          >
-            <div className="bg-blue-900/90 text-white px-6 py-3 rounded-lg border border-blue-500">
-              <p className="text-xl font-bold">{secretMessages[easterEggCount % secretMessages.length]}</p>
-              {easterEggCount === 99 && (
-                <p className="text-sm text-blue-300 mt-2">99.1% Pure</p>
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Hidden Crystal Button */}
-      <button
-        onClick={handleCrystalClick}
-        className="fixed bottom-4 right-4 opacity-10 hover:opacity-100 transition-opacity"
-        title={`Purity: ${easterEggCount}%`}
-      >
-        💎
-      </button>
-
-      {/* Birthday Easter Egg */}
-      {isHeisenbergsBirthday() && (
-        <div className="fixed top-4 right-4 animate-pulse">
-          <span className="text-green-500 text-sm">Happy Birthday, Heisenberg! 🎂</span>
-        </div>
-      )}
     </div>
   );
 };
