@@ -53,6 +53,7 @@ const LandingPage: React.FC = () => {
   const [easterEggCount, setEasterEggCount] = useState(0);
   const [showSecretMessage, setShowSecretMessage] = useState(false);
   const [konami, setKonami] = useState<string[]>([]);
+  const [crystalClicked, setCrystalClicked] = useState(false);
 
   // Mouse trail effect
   const cursorX = useSpring(mouseX, { stiffness: 100, damping: 25 });
@@ -343,15 +344,22 @@ const LandingPage: React.FC = () => {
     return today.getMonth() === 8 && today.getDate() === 7; // September 7th
   };
 
-  // Click counter for crystal icon
+  // Updated click handler for crystal icon
   const handleCrystalClick = () => {
+    setCrystalClicked(true);
+    setTimeout(() => setCrystalClicked(false), 200);
+    
     setEasterEggCount(prev => {
-      if (prev === 99) {
+      const newCount = prev + 1;
+      if (newCount === 99) {
         setShowSecretMessage(true);
         setTimeout(() => setShowSecretMessage(false), 3000);
+        return 99;
+      }
+      if (newCount > 99) {
         return 0;
       }
-      return prev + 1;
+      return newCount;
     });
   };
 
@@ -378,14 +386,32 @@ const LandingPage: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Hidden Crystal Button - Made more visible */}
-      <button
-        onClick={handleCrystalClick}
-        className="fixed bottom-8 right-8 opacity-50 hover:opacity-100 transition-opacity z-[90] text-4xl transform hover:scale-110 transition-transform duration-200 bg-black/20 p-2 rounded-full backdrop-blur-sm border border-green-500/20"
-        title={`Purity: ${easterEggCount}%`}
-      >
-        💎
-      </button>
+      {/* Crystal Button with Progress Ring */}
+      <div className="fixed bottom-8 right-8 z-[90]">
+        <div 
+          className="absolute inset-0 bg-green-500/20 rounded-full"
+          style={{
+            clipPath: `circle(${(easterEggCount / 99) * 100}% at center)`
+          }}
+        />
+        <button
+          onClick={handleCrystalClick}
+          className={`
+            relative text-4xl p-4 
+            bg-black/40 backdrop-blur-sm rounded-full
+            border border-green-500/30
+            transition-all duration-200
+            hover:scale-110 hover:border-green-500/50
+            ${crystalClicked ? 'scale-95 border-green-500' : ''}
+          `}
+          title={`Purity: ${easterEggCount}%`}
+        >
+          💎
+          <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+            <span className="text-xs text-green-500">{easterEggCount}% pure</span>
+          </div>
+        </button>
+      </div>
 
       {/* Birthday Easter Egg - Increased z-index */}
       {isHeisenbergsBirthday() && (
