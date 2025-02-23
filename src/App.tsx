@@ -8,6 +8,7 @@ import DashboardPage from './pages/DashboardPage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import OperationsPage from './pages/OperationsPage';
 import RiskSystemPage from './pages/RiskSystemPage';
+import MapPage from './pages/MapPage';
 import Sidebar from './components/Sidebar';
 
 // Layout wrapper component
@@ -34,6 +35,7 @@ const App: React.FC = () => {
             <Route path="/" element={<LandingPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/analytics" element={<AnalyticsPage />} />
+            <Route path="/map" element={<MapPage />} />
             <Route path="/operations" element={<OperationsPage />} />
             <Route path="/risk" element={<RiskSystemPage />} />
           </Routes>

@@ -21,6 +21,12 @@ const Sidebar: React.FC = () => {
       path: '/analytics'
     },
     {
+      id: 'map',
+      icon: '🗺️',
+      label: 'Territory Map',
+      path: '/map'
+    },
+    {
       id: 'operations',
       icon: '🏭',
       label: 'Operations',
