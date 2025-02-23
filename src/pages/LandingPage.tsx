@@ -298,6 +298,11 @@ const LandingPage: React.FC = () => {
     }
   ];
 
+  const scrollToMap = () => {
+    const mapSection = document.getElementById('territory-map');
+    mapSection?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div ref={containerRef} className="relative min-h-screen bg-black overflow-hidden">
       {/* Animated Background */}
@@ -331,6 +336,12 @@ const LandingPage: React.FC = () => {
                 <Link to="/analytics" className="text-gray-400 hover:text-green-500 transition-colors">Analytics</Link>
                 <Link to="/operations" className="text-gray-400 hover:text-green-500 transition-colors">Operations</Link>
                 <Link to="/risk" className="text-gray-400 hover:text-green-500 transition-colors">Risk Management</Link>
+                <button 
+                  onClick={scrollToMap}
+                  className="text-gray-400 hover:text-green-500 transition-colors"
+                >
+                  Territory Map
+                </button>
               </div>
             </div>
           </div>
@@ -632,10 +643,10 @@ const LandingPage: React.FC = () => {
           </div>
         </section>
 
-        {/* Enhanced Territory Control Map */}
-        <section className="relative py-20 bg-black">
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold text-white mb-12 text-center">Empire Territory</h2>
+        {/* Territory Map Section */}
+        <section id="territory-map" className="relative py-20 bg-black">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-4xl font-bold text-green-500 mb-8">Territory Map</h2>
             <TerritoryMap />
           </div>
         </section>
