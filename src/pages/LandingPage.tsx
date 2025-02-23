@@ -50,6 +50,9 @@ const LandingPage: React.FC = () => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const [currentTier, setCurrentTier] = useState(0);
+  const [easterEggCount, setEasterEggCount] = useState(0);
+  const [showSecretMessage, setShowSecretMessage] = useState(false);
+  const [konami, setKonami] = useState<string[]>([]);
 
   // Mouse trail effect
   const cursorX = useSpring(mouseX, { stiffness: 100, damping: 25 });
@@ -179,6 +182,18 @@ const LandingPage: React.FC = () => {
     }
   ];
 
+  // Konami code sequence
+  const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+
+  // Easter egg messages
+  const secretMessages = [
+    "You're goddamn right",
+    "I am the danger",
+    "Yeah, science!",
+    "Better call Saul!",
+    "Say my name",
+  ];
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
@@ -217,6 +232,25 @@ const LandingPage: React.FC = () => {
       });
     });
   }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const newKonami = [...konami, e.key];
+      if (newKonami.length > konamiCode.length) {
+        newKonami.shift();
+      }
+      setKonami(newKonami);
+
+      if (newKonami.join(',') === konamiCode.join(',')) {
+        setShowSecretMessage(true);
+        setEasterEggCount(prev => prev + 1);
+        setTimeout(() => setShowSecretMessage(false), 3000);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [konami]);
 
   const empireTiers = [
     { 
@@ -301,6 +335,24 @@ const LandingPage: React.FC = () => {
   const scrollToMap = () => {
     const mapSection = document.getElementById('territory-map');
     mapSection?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // Special date check for Heisenberg's birthday
+  const isHeisenbergsBirthday = () => {
+    const today = new Date();
+    return today.getMonth() === 8 && today.getDate() === 7; // September 7th
+  };
+
+  // Click counter for crystal icon
+  const handleCrystalClick = () => {
+    setEasterEggCount(prev => {
+      if (prev === 99) {
+        setShowSecretMessage(true);
+        setTimeout(() => setShowSecretMessage(false), 3000);
+        return 0;
+      }
+      return prev + 1;
+    });
   };
 
   return (
@@ -655,19 +707,67 @@ const LandingPage: React.FC = () => {
         <div className="fixed bottom-0 left-0 right-0 p-4 bg-black/90 backdrop-blur-sm border-t border-green-500/20">
           <div className="container mx-auto flex justify-between items-center">
             <div className="flex items-center space-x-4">
-              <span className="chemical-formula">C₁₀H₁₅N • CH₃</span>
+              <span 
+                className="chemical-formula cursor-help"
+                title="The one who knocks"
+                onMouseEnter={() => {
+                  if (easterEggCount >= 50) {
+                    setShowSecretMessage(true);
+                    setTimeout(() => setShowSecretMessage(false), 2000);
+                  }
+                }}
+              >
+                C₁₀H₁₅N • CH₃
+              </span>
               <div className="h-4 w-px bg-green-500/20" />
               <span className="text-green-400 text-sm">SYSTEM v2.0</span>
               <div className="h-4 w-px bg-green-500/20" />
-              <span className="text-gray-400 text-sm">LAB TEMPERATURE: 185°C</span>
+              <span className="text-gray-400 text-sm">LAB TEMPERATURE: {easterEggCount > 80 ? '99.1' : '185'}°C</span>
             </div>
             <div className="flex items-center space-x-4">
               <span className="animate-pulse h-2 w-2 bg-green-500 rounded-full" />
-              <span className="text-green-400 text-sm">EMPIRE PROTOCOLS ACTIVE</span>
+              <span className="text-green-400 text-sm">
+                {easterEggCount >= 99 ? 'HEISENBERG MODE ACTIVATED' : 'EMPIRE PROTOCOLS ACTIVE'}
+              </span>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Easter Egg Message Overlay */}
+      <AnimatePresence>
+        {showSecretMessage && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+            className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50"
+          >
+            <div className="bg-blue-900/90 text-white px-6 py-3 rounded-lg border border-blue-500">
+              <p className="text-xl font-bold">{secretMessages[easterEggCount % secretMessages.length]}</p>
+              {easterEggCount === 99 && (
+                <p className="text-sm text-blue-300 mt-2">99.1% Pure</p>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Hidden Crystal Button */}
+      <button
+        onClick={handleCrystalClick}
+        className="fixed bottom-4 right-4 opacity-10 hover:opacity-100 transition-opacity"
+        title={`Purity: ${easterEggCount}%`}
+      >
+        💎
+      </button>
+
+      {/* Birthday Easter Egg */}
+      {isHeisenbergsBirthday() && (
+        <div className="fixed top-4 right-4 animate-pulse">
+          <span className="text-green-500 text-sm">Happy Birthday, Heisenberg! 🎂</span>
+        </div>
+      )}
     </div>
   );
 };
