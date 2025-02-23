@@ -378,10 +378,10 @@ const LandingPage: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Hidden Crystal Button - Increased z-index */}
+      {/* Hidden Crystal Button - Made more visible */}
       <button
         onClick={handleCrystalClick}
-        className="fixed bottom-4 right-4 opacity-10 hover:opacity-100 transition-opacity z-[90]"
+        className="fixed bottom-8 right-8 opacity-50 hover:opacity-100 transition-opacity z-[90] text-4xl transform hover:scale-110 transition-transform duration-200 bg-black/20 p-2 rounded-full backdrop-blur-sm border border-green-500/20"
         title={`Purity: ${easterEggCount}%`}
       >
         💎
