@@ -1,0 +1,524 @@
+/* Territory Map Styles */
+
+/* Base Map Container */
+.map-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #0a0a0a;
+  overflow: hidden;
+}
+
+/* Grid Pattern */
+.map-grid {
+  position: absolute;
+  inset: 0;
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+/* Street Lines */
+.street-grid {
+  width: 100%;
+  height: 100%;
+}
+
+.street-line {
+  stroke: rgba(255, 255, 255, 0.2);
+  stroke-width: 1;
+  fill: none;
+}
+
+.street-name {
+  fill: rgba(255, 255, 255, 0.4);
+  font-size: 10px;
+  font-family: monospace;
+}
+
+/* Location Markers */
+.location-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.marker-dot {
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  margin: 0 auto 4px;
+}
+
+.marker-label {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+  color: #fff;
+}
+
+.marker-type {
+  opacity: 0.6;
+  font-size: 10px;
+}
+
+/* Location Types */
+.type-lab .marker-dot { background: #ff4444; }
+.type-warehouse .marker-dot { background: #44ff44; }
+.type-front .marker-dot { background: #4444ff; }
+.type-police .marker-dot { background: #ffff44; }
+
+/* Details Panel */
+.details-panel {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 12px;
+  color: #fff;
+  font-size: 12px;
+  max-width: 240px;
+}
+
+.details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.details-title {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.details-type {
+  opacity: 0.6;
+  font-size: 11px;
+}
+
+.details-close {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.details-close:hover {
+  opacity: 1;
+}
+
+/* Controls */
+.map-controls {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.map-control {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.map-control:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Location Image Hover Effect */
+.location-marker img {
+  transition: transform 0.3s ease-out;
+}
+
+.location-marker:hover img {
+  transform: scale(1.1);
+}
+
+/* Status Indicator Pulse */
+.status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.status-operational { background: #00ff00; }
+.status-compromised { background: #ff0000; }
+.status-surveillance { background: #ffff00; }
+.status-shutdown { background: #666666; }
+
+/* Time of Day Effect */
+.map-night {
+  background: #050505;
+}
+
+.map-night .street-line {
+  stroke: rgba(0, 122, 255, 0.2);
+}
+
+/* Hover Effects */
+.hover-info {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(0, 122, 255, 0.3);
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 12px;
+  color: #fff;
+  pointer-events: none;
+  transform: translate(-50%, -100%);
+  transition: opacity 0.2s ease;
+}
+
+/* Breaking Bad Theme Colors */
+:root {
+  --bb-yellow: #ffd700;
+  --bb-green: #1a4d1a;
+  --bb-blue: #00537a;
+  --bb-red: #8b0000;
+}
+
+.quote-text {
+  position: relative;
+  display: inline-block;
+}
+
+.quote-text::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(40, 167, 69, 0.5),
+    transparent
+  );
+  animation: quoteLine 3s ease-in-out infinite;
+}
+
+@keyframes quoteLine {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.threat-indicator {
+  position: relative;
+}
+
+.threat-indicator::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(220, 53, 69, 0.1),
+    transparent 40%,
+    transparent 60%,
+    rgba(220, 53, 69, 0.1)
+  );
+  animation: threatPulse 2s ease-in-out infinite;
+}
+
+@keyframes threatPulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.time-indicator {
+  position: relative;
+  overflow: hidden;
+}
+
+.time-indicator::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(40, 167, 69, 0.2),
+    transparent
+  );
+  animation: timeShimmer 2s linear infinite;
+}
+
+@keyframes timeShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Territory Map Styles */
+.territory-map-container {
+  position: relative;
+  width: 100%;
+  background: #0a0a0a;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* Map Container */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  background: #0a0a0a !important;
+  font-family: inherit;
+}
+
+/* Dark Theme */
+.leaflet-tile-pane {
+  filter: invert(100%) hue-rotate(180deg) brightness(30%) saturate(200%);
+}
+
+/* Marker Styles */
+.leaflet-marker-icon {
+  transition: all 0.3s ease;
+}
+
+.leaflet-marker-icon:hover {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 5px currentColor);
+}
+
+/* Dealer Glow Effect */
+.dealer-glow {
+  filter: drop-shadow(0 0 8px #44ff44) !important;
+  animation: pulse 1.5s infinite;
+}
+
+/* Popup Styles */
+.leaflet-popup-content-wrapper {
+  background: rgba(10, 10, 10, 0.95) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(68, 255, 68, 0.2);
+  border-radius: 4px !important;
+  box-shadow: 0 0 15px rgba(68, 255, 68, 0.1);
+}
+
+.leaflet-popup-tip {
+  background: rgba(10, 10, 10, 0.95) !important;
+  border: 1px solid rgba(68, 255, 68, 0.2);
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.4;
+}
+
+/* Controls */
+.leaflet-control-container .leaflet-control {
+  background: rgba(10, 10, 10, 0.8) !important;
+  border: 1px solid rgba(68, 255, 68, 0.2) !important;
+  color: #ffffff !important;
+}
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  color: #ffffff !important;
+  background: rgba(10, 10, 10, 0.8) !important;
+  border: 1px solid rgba(68, 255, 68, 0.2) !important;
+}
+
+.leaflet-control-zoom-in:hover,
+.leaflet-control-zoom-out:hover {
+  background: rgba(68, 255, 68, 0.2) !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(10, 10, 10, 0.8) !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.leaflet-control-attribution a {
+  color: rgba(68, 255, 68, 0.5) !important;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% {
+    filter: drop-shadow(0 0 5px #44ff44);
+  }
+  50% {
+    filter: drop-shadow(0 0 15px #44ff44);
+  }
+  100% {
+    filter: drop-shadow(0 0 5px #44ff44);
+  }
+}
+
+/* Z-index fixes */
+.leaflet-map-pane {
+  z-index: 2 !important;
+}
+
+.leaflet-tile-pane {
+  z-index: 1 !important;
+}
+
+.leaflet-overlay-pane {
+  z-index: 3 !important;
+}
+
+.leaflet-marker-pane {
+  z-index: 4 !important;
+}
+
+.leaflet-tooltip-pane {
+  z-index: 5 !important;
+}
+
+.leaflet-popup-pane {
+  z-index: 6 !important;
+}
+
+.leaflet-control {
+  z-index: 7 !important;
+}
+
+/* Risk Level Colors */
+.risk-low { background: #4ade80; }
+.risk-medium { background: #fb923c; }
+.risk-high { background: #ef4444; }
+.risk-extreme { 
+  background: #7f1d1d;
+  animation: extremeRiskPulse 2s infinite;
+}
+
+/* Profitability Bar */
+.profitability-bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.profitability-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #44ff44, #00ff00);
+  transition: width 0.3s ease;
+}
+
+/* Animations */
+@keyframes extremeRiskPulse {
+  0% {
+    box-shadow: 0 0 5px #ef4444;
+  }
+  50% {
+    box-shadow: 0 0 15px #ef4444;
+  }
+  100% {
+    box-shadow: 0 0 5px #ef4444;
+  }
+}
+
+/* Breaking Bad Theme Colors */
+:root {
+  --bb-green: #44ff44;
+  --bb-dark-green: #1a4d1a;
+  --bb-yellow: #ffff44;
+  --bb-red: #ff4444;
+  --bb-blue: #4444ff;
+}
+
+/* Police Zone Highlight */
+.police-zone {
+  border: 2px solid var(--bb-yellow);
+  border-radius: 50%;
+  animation: policeZone 3s infinite;
+}
+
+@keyframes policeZone {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+}
+
+/* High Risk Area Pulse */
+.high-risk-area {
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.2) 0%, transparent 70%);
+  animation: highRiskPulse 2s infinite;
+}
+
+@keyframes highRiskPulse {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+/* Dealer Zone Dollar Sign Glow */
+.dealer-zone {
+  position: relative;
+}
+
+.dealer-zone::after {
+  content: '$';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--bb-green);
+  text-shadow: 0 0 10px var(--bb-green);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.dealer-zone:hover::after {
+  opacity: 1;
+  animation: dollarGlow 1.5s infinite;
+}
+
+@keyframes dollarGlow {
+  0% {
+    text-shadow: 0 0 5px var(--bb-green);
+  }
+  50% {
+    text-shadow: 0 0 15px var(--bb-green);
+  }
+  100% {
+    text-shadow: 0 0 5px var(--bb-green);
+  }
+} 

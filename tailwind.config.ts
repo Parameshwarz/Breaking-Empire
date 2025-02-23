@@ -1,8 +1,11 @@
 import type { Config } from "tailwindcss";
 
-export default {
+const config: Config = {
   darkMode: ["class"],
-  content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       borderRadius: {
@@ -61,6 +64,34 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        "bb-green": {
+          50: "#f0fdf4",
+          100: "#dcfce7",
+          200: "#bbf7d0",
+          300: "#86efac",
+          400: "#4ade80",
+          500: "#22c55e",
+          600: "#16a34a",
+          700: "#15803d",
+          800: "#166534",
+          900: "#14532d",
+        },
+        "bb-blue": {
+          50: "#f0f9ff",
+          100: "#e0f2fe",
+          200: "#bae6fd",
+          300: "#7dd3fc",
+          400: "#38bdf8",
+          500: "#0ea5e9",
+          600: "#0284c7",
+          700: "#0369a1",
+          800: "#075985",
+          900: "#0c4a6e",
+        },
+      },
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
+        heisenberg: ["Heisenberg", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {
@@ -79,12 +110,23 @@ export default {
             height: "0",
           },
         },
+        glow: {
+          "0%": {
+            textShadow: "0 0 10px rgba(16, 185, 129, 0.5), 0 0 20px rgba(16, 185, 129, 0.3)",
+          },
+          "100%": {
+            textShadow: "0 0 20px rgba(16, 185, 129, 0.8), 0 0 30px rgba(16, 185, 129, 0.5)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "glow-pulse": "glow 2s ease-in-out infinite alternate",
       },
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
-} satisfies Config;
+};
+
+export default config;

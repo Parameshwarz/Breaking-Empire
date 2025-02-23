@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hat Brim -->
+  <path
+    d="M2 20C2 20 8 22 16 22C24 22 30 20 30 20V22C30 22 24 24 16 24C8 24 2 22 2 22V20Z"
+    fill="#10B981"
+  />
+  <!-- Hat Top -->
+  <path
+    d="M6 12C6 8 10 6 16 6C22 6 26 8 26 12L28 19C28 19 22 21 16 21C10 21 4 19 4 19L6 12Z"
+    fill="#059669"
+  />
+  <!-- Hat Band -->
+  <path
+    d="M4 19C4 19 10 21 16 21C22 21 28 19 28 19C28 19 22 20 16 20C10 20 4 19 4 19Z"
+    fill="#10B981"
+  />
+</svg> 
